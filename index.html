@@ -4,20 +4,54 @@
     <meta charset="UTF-8">
     <title>Hello World!</title>
     <script src="./raphael.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <style type="text/css">
+    .cornucopia
+    {
+-webkit-border-radius: 10px;
+border-radius: 10px;
+border-color:white;
+border-width: 3px;
+border-style: solid;
+
+background-color: blue;
+color:white;
+font-family: Trebuchet;
+float:left;
+padding:15px;
+display:block;
+-webkit-app-region: drag;
+-webkit-user-select: none;
+      }
+  </style>
   </head>
-  <body style="-webkit-app-region: drag">
-    <h1>Electrons!!!</h1>
+  <body style="-webkit-app-region: drag;">
+    <h1><span class="cornucopia" id="truistText"></span></h1>
     <script>
-    // Creates canvas 320 × 200 at 10, 50
-    var paper = Raphael(10, 50, 320, 200);
+    
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-    // Creates circle at x = 50, y = 40, with radius 10
-    var circle = paper.circle(50, 40, 10);
-    // Sets the fill attribute of the circle to red (#f00)
-    circle.attr("fill", "#f00");
-
-    // Sets the stroke attribute of the circle to white
-    circle.attr("stroke", "#fff");
+var jqxhr = $.getJSON( "http://raw.githubusercontent.com/zertosh/jenny-holzer-truisms/master/truisms.json", function() {
+  console.log( "success" );
+})
+  .done(function(data) {
+      $("#truistText").html(data[getRandomInt(0,data.length)]);
+      /*
+      $.each( data.items, function( i, item ) {
+        $( "<img>" ).attr( "src", item.media.m ).appendTo( "#images" );
+        if ( i === 3 ) {
+          return false;
+        }
+      });*/
+  })
+  .fail(function() {
+    console.log( "error" );
+  })
+  .always(function() {
+    console.log( "complete" );
+  });
     </script>
   </body>
 </html>
