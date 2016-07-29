@@ -12,6 +12,7 @@ function createWindow () {
   win.loadURL(`file://${__dirname}/index.html`)
 
   // Open the DevTools.
+  
   //win.webContents.openDevTools()
 
   // Emitted when the window is closed.
@@ -20,7 +21,10 @@ function createWindow () {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     win = null
-  })
+  });
+
+
+
 }
 
 // This method will be called when Electron has finished
@@ -43,6 +47,19 @@ app.on('activate', () => {
   if (win === null) {
     createWindow()
   }
+});
+
+const electron = require('electron');
+const globalShortcut = electron.globalShortcut
+
+app.on('ready', function () {
+  globalShortcut.register('Esc', function () {
+    app.quit();
+  })
+})
+
+app.on('will-quit', function () {
+  globalShortcut.unregisterAll()
 })
 
 // In this file you can include the rest of your app's specific main process
