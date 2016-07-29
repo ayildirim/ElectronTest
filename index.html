@@ -28,29 +28,29 @@ display:block;
   <body style="-webkit-app-region: drag;">
     <h1><span class="cornucopia" id="truistText"></span></h1>
     <script>
-    
+function placeTruism() {
+  $("#truistText").html(jsondata[getRandomInt(0,jsondata.length)]);
+}
+
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
+var jsondata;
 var jqxhr = $.getJSON( "http://raw.githubusercontent.com/zertosh/jenny-holzer-truisms/master/truisms.json", function() {
   console.log( "success" );
 })
   .done(function(data) {
-      $("#truistText").html(data[getRandomInt(0,data.length)]);
-      /*
-      $.each( data.items, function( i, item ) {
-        $( "<img>" ).attr( "src", item.media.m ).appendTo( "#images" );
-        if ( i === 3 ) {
-          return false;
-        }
-      });*/
+    jsondata=data;
+    placeTruism();
   })
   .fail(function() {
     console.log( "error" );
   })
   .always(function() {
     console.log( "complete" );
+  });
+  $("body").dblclick(function(){
+    placeTruism();
   });
     </script>
   </body>
