@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/ayildirim/RandomTruism/branch/master/graph/badge.svg)](https://codecov.io/gh/ayildirim/RandomTruism)
+
 [![Build Status](https://travis-ci.org/ayildirim/RandomTruism.svg?branch=master)](https://travis-ci.org/ayildirim/RandomTruism)
 
 # [RandomTruism](https://ayildirim.github.io/RandomTruism/)
